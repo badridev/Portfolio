@@ -1,35 +1,98 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect, useRef } from "react";
+import Header from "./components/layout/Header";
+import Skills from "./components/layout/Skills";
+import Home from "./components/layout/Home"; // Your home component
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const sections = [
+  { id: "home", label: "Home" },
+  { id: "skills", label: "Skills" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
+
+const App = () => {
+  const [activeSection, setActiveSection] = useState("home");
+  const sectionRefs = useRef({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => {
+      if (sectionRefs.current[section.id]) {
+        observer.observe(sectionRefs.current[section.id]);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="relative min-h-screen bg-black overflow-hidden text-white">
+      <Header activeSection={activeSection} sections={sections} />
 
-export default App
+      {/* Animated gradient background */}
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-0 left-0 w-[200%] h-[200%] bg-gradient-to-br from-black to-[#ffa800] opacity-20 animate-gradient-slow -rotate-12"></div>
+        <div className="absolute top-0 left-0 w-[200%] h-[200%] bg-gradient-to-tr from-black to-[#ffa800] opacity-20 animate-gradient-slow-reverse rotate-12"></div>
+      </div>
+
+      {/* Sections */}
+      <section
+        id="home"
+        ref={(el) => (sectionRefs.current["home"] = el)}
+        className="relative z-10"
+      >
+        <Home />
+      </section>
+
+      <section
+        id="skills"
+        ref={(el) => (sectionRefs.current["skills"] = el)}
+        className="relative z-10"
+      >
+        <Skills />
+      </section>
+
+      <section
+        id="about"
+        ref={(el) => (sectionRefs.current["about"] = el)}
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+      >
+        About Section
+      </section>
+
+      <section
+        id="projects"
+        ref={(el) => (sectionRefs.current["projects"] = el)}
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+      >
+        Projects Section
+      </section>
+
+      <section
+        id="contact"
+        ref={(el) => (sectionRefs.current["contact"] = el)}
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+      >
+        Contact Section
+      </section>
+    </div>
+  );
+};
+
+export default App;
+
+
+
