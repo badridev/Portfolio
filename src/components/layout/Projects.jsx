@@ -27,7 +27,7 @@ const Projects = () => {
       description:
         "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage products, sales, and stock.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
-      image: "/src/assets/1.png",
+      image: "/public/assets/1.png",
       githubUrl: "https://github.com/BD-YASSINE/InventoryPro",
     },
     {
@@ -36,7 +36,7 @@ const Projects = () => {
       description:
         "Home page of motorcycles store with modern design created using HTML & CSS only.",
       technologies: ["HTML", "CSS"],
-      image: "/src/assets/2.png",
+      image: "/public/assets/2.png",
       githubUrl: "https://github.com/BD-YASSINE/Goldbike_store",
     },
     {
@@ -45,7 +45,7 @@ const Projects = () => {
       description:
         "A sleek 3D landing page built using React and Tailwind CSS, focused on eye-catching visuals and UX.",
       technologies: ["React", "Tailwind CSS"],
-      image: "/src/assets/3.png",
+      image: "/public/assets/3.png",
       githubUrl: "https://github.com/BD-YASSINE/Illuvium_game",
     },
   ];

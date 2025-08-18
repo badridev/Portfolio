@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import myPhoto from "../../assets/myPhoto.jpeg";
+import myPhoto from "../../../public/assets/myPhoto.jpeg";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
