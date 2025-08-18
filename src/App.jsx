@@ -17,13 +17,21 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
+// ✅ Reusable Section Title Component
+const SectionTitle = ({ children }) => (
+  <div className="text-center mb-12">
+    <h2 className="text-4xl font-bold text-[#ffa800]">{children}</h2>
+    <div className="w-24 h-1 bg-[#ffa800] mx-auto mt-2"></div>
+  </div>
+);
+
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [showScroll, setShowScroll] = useState(false);
   const sectionRefs = useRef({});
   const canvasRef = useRef(null);
 
-  // Neon stars animation
+  // 🌌 Neon stars background
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -38,7 +46,6 @@ const App = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Create stars
     for (let i = 0; i < numStars; i++) {
       stars.push({
         x: Math.random() * canvas.width,
@@ -46,7 +53,7 @@ const App = () => {
         radius: Math.random() * 2,
         dx: (Math.random() - 0.5) * 0.5,
         dy: (Math.random() - 0.5) * 0.5,
-        color: Math.random() > 0.5 ? "#ffea00" : "#ff8c00", // yellow / orange neon
+        color: Math.random() > 0.5 ? "#ffea00" : "#ff8c00",
       });
     }
 
@@ -63,7 +70,6 @@ const App = () => {
         star.x += star.dx;
         star.y += star.dy;
 
-        // Wrap around edges
         if (star.x < 0) star.x = canvas.width;
         if (star.x > canvas.width) star.x = 0;
         if (star.y < 0) star.y = canvas.height;
@@ -74,13 +80,10 @@ const App = () => {
     };
 
     animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-    };
+    return () => window.removeEventListener("resize", resizeCanvas);
   }, []);
 
-  // IntersectionObserver to track active section
+  // 🔎 Track active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -101,7 +104,7 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll-to-top button visibility
+  // ⬆️ Show scroll-to-top button
   useEffect(() => {
     const handleScroll = () => setShowScroll(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
@@ -114,61 +117,39 @@ const App = () => {
     <div className="relative min-h-screen bg-black overflow-x-hidden text-white">
       <Header activeSection={activeSection} sections={sections} />
 
-      {/* Neon stars canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full z-0"
-      ></canvas>
+      {/* 🌌 Neon Stars Background */}
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>
 
       {/* Sections */}
-      <section
-        id="home"
-        ref={(el) => (sectionRefs.current["home"] = el)}
-        className="relative z-10"
-      >
+      <section id="home" ref={(el) => (sectionRefs.current["home"] = el)} className="relative z-10">
         <Home />
       </section>
 
-      <section
-        id="skills"
-        ref={(el) => (sectionRefs.current["skills"] = el)}
-        className="relative z-10"
-      >
+      <section id="skills" ref={(el) => (sectionRefs.current["skills"] = el)} className="relative z-10 py-20 px-6">
+        <SectionTitle>Skills</SectionTitle>
         <Skills />
       </section>
 
-      <section
-        id="about"
-        ref={(el) => (sectionRefs.current["about"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl px-6 relative z-10"
-      >
-        <div className="w-full max-w-5xl animate-fade-up">
-          <About />
-        </div>
+      <section id="about" ref={(el) => (sectionRefs.current["about"] = el)} className="relative z-10 py-20 px-6">
+        <SectionTitle>About Me</SectionTitle>
+        <About />
       </section>
 
-      <section
-        id="projects"
-        ref={(el) => (sectionRefs.current["projects"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl relative z-10"
-      >
+      <section id="projects" ref={(el) => (sectionRefs.current["projects"] = el)} className="relative z-10 py-20 px-6">
+        <SectionTitle>Projects</SectionTitle>
         <Projects />
       </section>
 
-      <section
-        id="contact"
-        ref={(el) => (sectionRefs.current["contact"] = el)}
-        className="w-full flex justify-center items-center text-gray-300 text-4xl relative z-10"
-      >
+      <section id="contact" ref={(el) => (sectionRefs.current["contact"] = el)} className="relative z-10 py-20 px-6">
+        <SectionTitle>Contact</SectionTitle>
         <Contact />
       </section>
 
-      {/* Scroll-to-top Button */}
+      {/* ⬆️ Scroll-to-top Button */}
       <button
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 p-3 bg-yellow-500 text-black rounded-full shadow-lg transition-all duration-500 z-50
-          ${showScroll ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
-        `}
+          ${showScroll ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
       >
         <FaArrowUp />
       </button>
@@ -177,5 +158,6 @@ const App = () => {
 };
 
 export default App;
+
 
 

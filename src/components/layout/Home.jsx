@@ -27,7 +27,7 @@ const Home = () => {
 
       {/* Short paragraph */}
       <p className="text-gray-400 max-w-2xl mb-8 text-center">
-        I’m a passionate web developer building modern and creative web applications using the latest technologies.
+        I’m a passionate web developer focused on creating modern, user-friendly, and scalable web applications using the latest technologies. I enjoy turning ideas into impactful digital solutions with clean design and efficient code
       </p>
 
       {/* Buttons */}

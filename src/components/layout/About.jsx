@@ -36,15 +36,6 @@ const About = () => {
       ref={ref}
       className="relative z-10 flex flex-col items-center w-full px-6 py-24 gap-12"
     >
-      {/* Section Title */}
-      <motion.h2
-        variants={container}
-        initial="hidden"
-        animate={controls}
-        className="text-5xl font-bold text-center mb-32 text-yellow-400"
-      >
-        About Me
-      </motion.h2>
 
       <div className="flex flex-col md:flex-row items-center justify-center w-full gap-12">
         {/* Left: Picture */}

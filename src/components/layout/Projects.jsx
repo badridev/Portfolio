@@ -55,13 +55,6 @@ const Projects = () => {
   return (
     <div className="w-full z-10 pb-32 bg-black/80 text-white p-8">
       <div className="max-w-7xl mx-auto" ref={sectionRef}>
-        <h2
-          className={`text-5xl font-bold text-center mb-32 mt-20 text-yellow-400 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          My Projects
-        </h2>
 
         <div className="flex flex-col gap-16">
           {projects.map((project, index) => {
@@ -71,7 +64,7 @@ const Projects = () => {
                 key={project.id}
                 className={`flex flex-col md:flex-row ${
                   isImageLeft ? "" : "md:flex-row-reverse"
-                } items-center bg-gradient-to-br from-gray-900 to-black border-2 border-yellow-500/30 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:border-yellow-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:scale-105 min-h-[400px] ${
+                } items-center bg-gradient-to-bl from-gray-900 to-black border-2 border-yellow-500/30 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:border-yellow-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:scale-105 min-h-[400px] ${
                   project.isPlaceholder ? "opacity-50" : ""
                 } ${
                   isVisible
