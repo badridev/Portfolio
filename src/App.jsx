@@ -21,6 +21,64 @@ const App = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [showScroll, setShowScroll] = useState(false);
   const sectionRefs = useRef({});
+  const canvasRef = useRef(null);
+
+  // Neon stars animation
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    let stars = [];
+    const numStars = 100;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    // Create stars
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+        color: Math.random() > 0.5 ? "#ffea00" : "#ff8c00", // yellow / orange neon
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach((star) => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = star.color;
+        ctx.fillStyle = star.color;
+        ctx.fill();
+
+        star.x += star.dx;
+        star.y += star.dy;
+
+        // Wrap around edges
+        if (star.x < 0) star.x = canvas.width;
+        if (star.x > canvas.width) star.x = 0;
+        if (star.y < 0) star.y = canvas.height;
+        if (star.y > canvas.height) star.y = 0;
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, []);
 
   // IntersectionObserver to track active section
   useEffect(() => {
@@ -32,7 +90,7 @@ const App = () => {
           }
         });
       },
-      { threshold: 0.2 } // lower threshold to detect early
+      { threshold: 0.2 }
     );
 
     sections.forEach((section) => {
@@ -56,11 +114,11 @@ const App = () => {
     <div className="relative min-h-screen bg-black overflow-x-hidden text-white">
       <Header activeSection={activeSection} sections={sections} />
 
-      {/* Animated gradient background */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-0 left-0 w-[200%] h-[200%] bg-gradient-to-br from-black to-[#ffa800] opacity-20 animate-gradient-slow -rotate-12"></div>
-        <div className="absolute top-0 left-0 w-[200%] h-[200%] bg-gradient-to-tr from-black to-[#ffa800] opacity-20 animate-gradient-slow-reverse rotate-12"></div>
-      </div>
+      {/* Neon stars canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute top-0 left-0 w-full h-full z-0"
+      ></canvas>
 
       {/* Sections */}
       <section
@@ -82,7 +140,7 @@ const App = () => {
       <section
         id="about"
         ref={(el) => (sectionRefs.current["about"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl px-6"
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl px-6 relative z-10"
       >
         <div className="w-full max-w-5xl animate-fade-up">
           <About />
@@ -92,7 +150,7 @@ const App = () => {
       <section
         id="projects"
         ref={(el) => (sectionRefs.current["projects"] = el)}
-        className="min-h-screen  flex justify-center items-center text-gray-300 text-4xl"
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl relative z-10"
       >
         <Projects />
       </section>
@@ -100,7 +158,7 @@ const App = () => {
       <section
         id="contact"
         ref={(el) => (sectionRefs.current["contact"] = el)}
-        className="w-full flex justify-center items-center text-gray-300 text-4xl"
+        className="w-full flex justify-center items-center text-gray-300 text-4xl relative z-10"
       >
         <Contact />
       </section>
