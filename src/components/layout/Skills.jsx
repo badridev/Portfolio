@@ -1,59 +1,68 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaLaravel, FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaCode 
 } from "react-icons/fa";
-import { SiTailwindcss, SiMysql, SiMongodb, SiExpress, SiPostman, SiBootstrap } from "react-icons/si";
+import { SiTailwindcss, SiMysql, SiMongodb, SiExpress, SiPostman, SiBootstrap, SiCanva } from "react-icons/si";
 
-const skills = [
+const skillsData = [
   {
     category: "Front-End",
+    color: "#FFA800",
     skills: [
-      { name: "HTML", icon: <FaHtml5 className="text-[#ffa800]" /> },
-      { name: "CSS", icon: <FaCss3Alt className="text-[#ffa800]" /> },
-      { name: "Bootstrap", icon: <SiBootstrap className="text-[#ffa800]" /> },
-      { name: "Tailwind", icon: <SiTailwindcss className="text-[#ffa800]" /> },
-      { name: "JavaScript", icon: <FaJs className="text-[#ffa800]" /> },
-      { name: "React", icon: <FaReact className="text-[#ffa800]" /> },
+      { name: "HTML", icon: <FaHtml5 />, color: "#FFA800" },
+      { name: "CSS", icon: <FaCss3Alt />, color: "#264de4" },
+      { name: "Bootstrap", icon: <SiBootstrap />, color: "#563d7c" },
+      { name: "Tailwind", icon: <SiTailwindcss />, color: "#06b6d4" },
+      { name: "JavaScript", icon: <FaJs />, color: "#f7df1e" },
+      { name: "React", icon: <FaReact />, color: "#61dafb" },
     ],
   },
   {
     category: "Back-End",
+    color: "#6e5494",
     skills: [
-      { name: "PHP", icon: <FaPhp className="text-[#ffa800]" /> },
-      { name: "Laravel", icon: <FaLaravel className="text-[#ffa800]" /> },
-      { name: "Node.js", icon: <FaNodeJs className="text-[#ffa800]" /> },
-      { name: "Express.js", icon: <SiExpress className="text-[#ffa800]" /> },
+      { name: "PHP", icon: <FaPhp />, color: "#8892be" },
+      { name: "Laravel", icon: <FaLaravel />, color: "#ff2d20" },
+      { name: "Node.js", icon: <FaNodeJs />, color: "#3c873a" },
+      { name: "Express.js", icon: <SiExpress />, color: "#888888" }, // Gray
     ],
   },
   {
     category: "Database",
+    color: "#4479a1",
     skills: [
-      { name: "MySQL", icon: <SiMysql className="text-[#ffa800]" /> },
-      { name: "MongoDB", icon: <SiMongodb className="text-[#ffa800]" /> },
+      { name: "MySQL", icon: <SiMysql />, color: "#4479a1" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
     ],
   },
   {
     category: "Tools",
+    color: "#f05032",
     skills: [
-      { name: "Git", icon: <FaGitAlt className="text-[#ffa800]" /> },
-      { name: "GitHub", icon: <FaGithub className="text-[#ffa800]" /> },
-      { name: "VS Code", icon: <FaCode className="text-[#ffa800]" /> },
-      { name: "Postman", icon: <SiPostman className="text-[#ffa800]" /> },
-      { name: "Figma", icon: <FaFigma className="text-[#ffa800]" /> },
+      { name: "VS Code", icon: <FaCode />, color: "#0078d4" },
+      { name: "Git", icon: <FaGitAlt />, color: "#f34f29" },
+      { name: "GitHub", icon: <FaGithub />, color: "#181717" },
+      { name: "Figma", icon: <FaFigma />, color: "#f24e1e" },
+      { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
+      { name: "Canva", icon: <SiCanva />, color: "#00C4CC" },
     ],
   },
 ];
 
 const Skills = () => {
+  const [activeTab, setActiveTab] = useState("All");
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef();
+
+  // Flatten all skills for "All" tab
+  const allSkills = skillsData.flatMap((tab) => tab.skills);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(entry.target); // Animate only once
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.2 }
@@ -62,46 +71,72 @@ const Skills = () => {
     return () => observer.disconnect();
   }, []);
 
+  const tabs = ["All", ...skillsData.map((tab) => tab.category)];
+
+  const skillsToShow =
+    activeTab === "All"
+      ? allSkills
+      : skillsData.find((tab) => tab.category === activeTab).skills;
+
   return (
     <section
       ref={sectionRef}
       className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen"
     >
-      <div className="container mx-auto text-center mb-16 max-w-5xl">
-        <h2 className="text-5xl font-bold text-[#ffa800] mb-4">My Skills</h2>
-        <p className="text-gray-300 max-w-2xl mx-auto">
-          Here are my skills grouped by Front-End, Back-End, Database, and Tools. I love creating smooth and modern web experiences.
-        </p>
+
+
+      {/* Tabs */}
+      <div className="flex justify-center flex-wrap gap-4 mb-12">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`px-4 py-2 rounded-full font-medium transition-colors duration-300
+              ${activeTab === tab ? "bg-yellow-400 text-black" : "bg-gray-800 text-gray-300 hover:bg-gray-700"}
+            `}
+          >
+            {tab}
+          </button>
+        ))}
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {skills.map((category) => (
-          <div key={category.category}>
-            <h3 className="text-3xl font-semibold text-[#ffa800] mb-6">{category.category}</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {category.skills.map((skill, index) => (
-                <div
-                  key={skill.name}
-                  className={`flex flex-col items-center p-4 bg-gray-900/50 rounded-lg neon-border hover:scale-105 transition-transform duration-300 cursor-pointer 
-                    ${visible ? "animate-fadeInUp" : "opacity-0"}`}
-                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
-                >
-                  <div className="text-4xl mb-2">{skill.icon}</div>
-                  <span className="relative text-gray-200 font-medium hover:text-[#ffa800] transition-colors duration-300">
-                    {skill.name}
-                    <span className="block h-0.5 w-6 bg-yellow-400 mt-1 mx-auto"></span>
-                  </span>
-                </div>
-              ))}
+      {/* Skills Cards */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {skillsToShow.map((skill, i) => (
+          <div
+            key={skill.name}
+            className={`flex flex-col items-center p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500 opacity-0`}
+            style={{
+              animation: visible ? `fadeUp 0.7s ease-out forwards` : "none",
+              animationDelay: `${i * 100}ms`,
+              backgroundColor: skill.color === "#888888" ? "#444" : `${skill.color}22`,
+            }}
+          >
+            <div className="text-5xl mb-3" style={{ color: skill.color }}>
+              {skill.icon}
             </div>
+            <span className="text-lg font-medium text-gray-200 hover:text-[#ffa800] transition-colors duration-300">
+              {skill.name}
+              <span className="block h-1 w-8 bg-yellow-400 mt-2 rounded-full mx-auto"></span>
+            </span>
           </div>
         ))}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 };
 
 export default Skills;
+
+
+
 
 
 

@@ -34,9 +34,8 @@ const About = () => {
   return (
     <section
       ref={ref}
-      className="relative z-10 flex flex-col items-center w-full px-6 py-24 gap-12"
+      className=" relative z-10 flex flex-col items-center w-full px-6 py-24 gap-12"
     >
-
       <div className="flex flex-col md:flex-row items-center justify-center w-full gap-12">
         {/* Left: Picture */}
         <motion.div
@@ -78,7 +77,11 @@ const About = () => {
             custom={2}
             className="text-gray-300 text-base md:text-lg"
           >
-            Hello! I’m <span className="text-[#ffa800] font-semibold">Yassine Badri</span>, 20 years old. I enjoy building modern web applications, learning new technologies, and solving real-world problems. I specialize in both front-end and back-end development.
+            Hello! I’m{" "}
+            <span className="text-[#ffa800] font-semibold">Yassine Badri</span>,
+            20 years old. I enjoy building modern web applications, learning new
+            technologies, and solving real-world problems. I specialize in both
+            front-end and back-end development.
           </motion.p>
 
           {/* Small Cards */}
@@ -104,7 +107,9 @@ const About = () => {
               custom={5}
               className="flex flex-col items-center justify-center p-4 border-2 border-[#ffa800] rounded-xl hover:scale-105 transition-transform cursor-pointer"
             >
-              <h3 className="text-lg font-semibold text-[#ffa800]">Experience</h3>
+              <h3 className="text-lg font-semibold text-[#ffa800]">
+                Experience
+              </h3>
               <span className="block h-0.5 w-6 bg-[#ffa800] my-2"></span>
               <p className="text-gray-300 text-sm text-center">
                 Internships and freelance work in web development
@@ -118,11 +123,3 @@ const About = () => {
 };
 
 export default About;
-
-
-
-
-
-
-
-

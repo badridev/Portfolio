@@ -126,7 +126,7 @@ const App = () => {
       </section>
 
       <section id="skills" ref={(el) => (sectionRefs.current["skills"] = el)} className="relative z-10 py-20 px-6">
-        <SectionTitle>Skills</SectionTitle>
+        <SectionTitle>My Skills</SectionTitle>
         <Skills />
       </section>
 
@@ -136,12 +136,12 @@ const App = () => {
       </section>
 
       <section id="projects" ref={(el) => (sectionRefs.current["projects"] = el)} className="relative z-10 py-20 px-6">
-        <SectionTitle>Projects</SectionTitle>
+        <SectionTitle>My Projects</SectionTitle>
         <Projects />
       </section>
 
       <section id="contact" ref={(el) => (sectionRefs.current["contact"] = el)} className="relative z-10 py-20 px-6">
-        <SectionTitle>Contact</SectionTitle>
+        <SectionTitle>Contact Me</SectionTitle>
         <Contact />
       </section>
 
