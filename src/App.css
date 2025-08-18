@@ -12,3 +12,29 @@
 .animate-fadeInUp {
   animation: fadeInUp 0.6s ease forwards;
 }
+/* Custom Scrollbar for App */
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #111; /* dark background for track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffa800; /* app orange color */
+  border-radius: 10px; /* rounded corners */
+  border: 2px solid #111; /* optional border for padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffb733; /* slightly lighter on hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ffa800 #111; /* thumb color and track color */
+}
