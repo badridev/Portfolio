@@ -24,7 +24,7 @@ const About = () => {
   };
 
   const infoCards = [
-    { title: "Projects", info: "10+ personal & freelance projects completed" },
+    { title: "Projects", info: "6 personal projects completed" },
     { title: "Experience", info: "Internships & freelance work in web development" },
     { title: "Education", info: "Technicien Spécialisé en Développement Digital" },
     { title: "Passion", info: "Learning new tech, building apps, coding challenges" },
@@ -57,9 +57,9 @@ const About = () => {
           {/* Intro */}
           <motion.div variants={fadeUpVariant}>
             <h2 className="text-3xl md:text-4xl font-bold text-[#ffa800]">
-              Hi, I’m <span className="text-yellow-400">Yassine Badri</span>
+              Hi, I’m <span className="text-[#ffa800]">Yassine Badri</span>
             </h2>
-            <span className="block h-1 w-20 bg-yellow-400 rounded my-2"></span>
+            <span className="block h-1 w-20 bg-[#ffa800] rounded my-2"></span>
             <p className="text-gray-300 text-base md:text-lg">
               I’m a 20-year-old Full Stack Developer based in Morocco. I create modern
               and creative web applications, mastering both frontend and backend

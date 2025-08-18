@@ -1,8 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
-import { 
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaLaravel, FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaCode 
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaPhp,
+  FaLaravel,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+  FaFigma,
+  FaCode,
 } from "react-icons/fa";
-import { SiTailwindcss, SiMysql, SiMongodb, SiExpress, SiPostman, SiBootstrap, SiCanva } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiMysql,
+  SiMongodb,
+  SiExpress,
+  SiPostman,
+  SiBootstrap,
+  SiCanva,
+} from "react-icons/si";
 
 const skillsData = [
   {
@@ -83,8 +101,6 @@ const Skills = () => {
       ref={sectionRef}
       className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen"
     >
-
-
       {/* Tabs */}
       <div className="flex justify-center flex-wrap gap-4 mb-12">
         {tabs.map((tab) => (
@@ -92,7 +108,11 @@ const Skills = () => {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 rounded-full font-medium transition-colors duration-300
-              ${activeTab === tab ? "bg-yellow-400 text-black" : "bg-gray-800 text-gray-300 hover:bg-gray-700"}
+              ${
+                activeTab === tab
+                  ? "bg-[#ffa800] text-black"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+              }
             `}
           >
             {tab}
@@ -109,7 +129,8 @@ const Skills = () => {
             style={{
               animation: visible ? `fadeUp 0.7s ease-out forwards` : "none",
               animationDelay: `${i * 100}ms`,
-              backgroundColor: skill.color === "#888888" ? "#444" : `${skill.color}22`,
+              backgroundColor:
+                skill.color === "#888888" ? "#444" : `${skill.color}22`,
             }}
           >
             <div className="text-5xl mb-3" style={{ color: skill.color }}>
@@ -117,7 +138,7 @@ const Skills = () => {
             </div>
             <span className="text-lg font-medium text-gray-200 hover:text-[#ffa800] transition-colors duration-300">
               {skill.name}
-              <span className="block h-1 w-8 bg-yellow-400 mt-2 rounded-full mx-auto"></span>
+              <span className="block h-1 w-8 bg-[#ffa800] mt-2 rounded-full mx-auto"></span>
             </span>
           </div>
         ))}
@@ -125,8 +146,14 @@ const Skills = () => {
 
       <style jsx>{`
         @keyframes fadeUp {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </section>
@@ -134,17 +161,3 @@ const Skills = () => {
 };
 
 export default Skills;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
