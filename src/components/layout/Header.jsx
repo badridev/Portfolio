@@ -2,11 +2,21 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 
 const Header = ({ activeSection, sections }) => {
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="w-full fixed top-0 z-50 bg-black/70 backdrop-blur-md shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
-        <div className="text-2xl font-bold text-[#ffa800] cursor-pointer">
+        <div
+          className="text-2xl font-bold text-[#ffa800] cursor-pointer"
+          onClick={() => handleScroll("home")}
+        >
           Yassine Badri
         </div>
 
@@ -14,7 +24,11 @@ const Header = ({ activeSection, sections }) => {
         <nav>
           <ul className="flex space-x-8 font-medium text-gray-300">
             {sections.map((section) => (
-              <li key={section.id} className="relative group cursor-pointer">
+              <li
+                key={section.id}
+                className="relative group cursor-pointer"
+                onClick={() => handleScroll(section.id)}
+              >
                 <span
                   className={`transition-colors duration-300 ${
                     activeSection === section.id ? "text-[#ffa800]" : "text-gray-300"
@@ -37,7 +51,7 @@ const Header = ({ activeSection, sections }) => {
           href="https://github.com/BD-YASSINE"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-[#ffa800] text-2xl transition-colors duration-300"
+          className="text-gray-300 hover:text-[#ffa800] text-3xl transition-colors duration-300"
         >
           <FaGithub />
         </a>
@@ -47,5 +61,7 @@ const Header = ({ activeSection, sections }) => {
 };
 
 export default Header;
+
+
 
 

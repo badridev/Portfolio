@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaLaravel, FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaCode 
 } from "react-icons/fa";
@@ -45,46 +45,48 @@ const skills = [
 ];
 
 const Skills = () => {
+  const sectionRef = useRef();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen">
+    <section
+      ref={sectionRef}
+      className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen"
+    >
       <div className="container mx-auto text-center mb-16 max-w-5xl">
-        <h2 className="text-5xl font-bold text-[#ffa800] mb-4">My Skills</h2>
-        <p className="text-gray-300 max-w-2xl mx-auto">
+        <h2 className={`text-5xl font-bold text-[#ffa800] mb-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          My Skills
+        </h2>
+        <p className={`text-gray-300 max-w-2xl mx-auto transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           Here are my skills grouped by Front-End, Back-End, Database, and Tools. I love creating smooth and modern web experiences.
         </p>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Top row */}
-        {skills.slice(0, 2).map((category) => (
-          <div key={category.category}>
+        {skills.map((category, catIndex) => (
+          <div key={category.category} className={`transition-all duration-700 delay-${catIndex * 150} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <h3 className="text-3xl font-semibold text-[#ffa800] mb-6">{category.category}</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {category.skills.map((skill) => (
+              {category.skills.map((skill, index) => (
                 <div
                   key={skill.name}
-                  className="flex flex-col items-center p-4 bg-gray-900/50 rounded-lg neon-border hover:scale-105 transition-transform duration-300 cursor-pointer"
-                >
-                  <div className="text-4xl mb-2">{skill.icon}</div>
-                  <span className="relative text-gray-200 font-medium hover:text-[#ffa800] transition-colors duration-300">
-                    {skill.name}
-                    <span className="block h-0.5 w-6 bg-yellow-400 mt-1 mx-auto"></span>
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-
-        {/* Bottom row */}
-        {skills.slice(2, 4).map((category) => (
-          <div key={category.category}>
-            <h3 className="text-3xl font-semibold text-[#ffa800] mb-6">{category.category}</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {category.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="flex flex-col items-center p-4 bg-gray-900/50 rounded-lg neon-border hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  className={`flex flex-col items-center p-4 bg-gray-900/50 rounded-lg neon-border hover:scale-105 transition-transform duration-300 cursor-pointer 
+                    ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  style={{ transitionDelay: `${(catIndex * 200 + index * 100)}ms` }}
                 >
                   <div className="text-4xl mb-2">{skill.icon}</div>
                   <span className="relative text-gray-200 font-medium hover:text-[#ffa800] transition-colors duration-300">
@@ -102,6 +104,8 @@ const Skills = () => {
 };
 
 export default Skills;
+
+
 
 
 

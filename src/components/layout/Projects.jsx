@@ -24,7 +24,7 @@ const Projects = () => {
     {
       id: 1,
       title: "InventoryPro",
-      description: "Full-stack inventory management solution with React, Node.js, and MongoDB. Features include user authentication, payment integration...",
+      description: "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage their products, sales, and stock. It offers a centralized dashboard that provides real-time insights into business activity, allowing users to make data-driven decisions.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
       image: "/src/assets/1.png",
       githubUrl: "https://github.com/BD-YASSINE/InventoryPro"

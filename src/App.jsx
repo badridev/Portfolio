@@ -22,6 +22,7 @@ const App = () => {
   const [showScroll, setShowScroll] = useState(false);
   const sectionRefs = useRef({});
 
+  // IntersectionObserver to track active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,29 +32,25 @@ const App = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.2 } // lower threshold to detect early
     );
 
     sections.forEach((section) => {
-      if (sectionRefs.current[section.id]) {
-        observer.observe(sectionRefs.current[section.id]);
-      }
+      const ref = sectionRefs.current[section.id];
+      if (ref) observer.observe(ref);
     });
 
     return () => observer.disconnect();
   }, []);
 
+  // Scroll-to-top button visibility
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScroll(window.scrollY > 300);
-    };
+    const handleScroll = () => setShowScroll(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden text-white">
@@ -87,7 +84,7 @@ const App = () => {
         ref={(el) => (sectionRefs.current["about"] = el)}
         className="min-h-screen flex justify-center items-center text-gray-300 text-4xl px-6"
       >
-        <div className="w-full max-w-5xl">
+        <div className="w-full max-w-5xl animate-fade-up">
           <About />
         </div>
       </section>
@@ -122,4 +119,5 @@ const App = () => {
 };
 
 export default App;
+
 
