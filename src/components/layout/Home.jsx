@@ -49,16 +49,16 @@ const Home = () => {
 
       {/* Social icons */}
       <div className="flex gap-6 text-2xl text-gray-300">
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
+        <a href="https://www.linkedin.com/in/yassine-badri-0279a7342/" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
           <FaLinkedin />
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
+        <a href="https://github.com/BD-YASSINE" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
           <FaGithub />
         </a>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
           <FaInstagram />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
+        <a href="https://x.com/yassine_o2" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffa800] transition">
           <FaTwitter />
         </a>
       </div>
