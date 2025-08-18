@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -24,37 +24,42 @@ const Projects = () => {
     {
       id: 1,
       title: "InventoryPro",
-      description: "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage their products, sales, and stock. It offers a centralized dashboard that provides real-time insights into business activity, allowing users to make data-driven decisions.",
+      description:
+        "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage their products, sales, and stock. It offers a centralized dashboard that provides real-time insights into business activity, allowing users to make data-driven decisions.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
       image: "/src/assets/1.png",
-      githubUrl: "https://github.com/BD-YASSINE/InventoryPro"
+      githubUrl: "https://github.com/BD-YASSINE/InventoryPro",
     },
     {
       id: 2,
-      title: "Coming Soon",
-      description: "Another exciting project will be added here...",
-      technologies: ["Tech", "Stack", "Here", "+1"],
-      image: null,
-      githubUrl: "#",
-      isPlaceholder: true
+      title: "Goldbike_store",
+      description:
+        "home page of motorcycles store modern design created using html & css only",
+      technologies: ["HTML", "CSS"],
+      image: "/src/assets/2.png",
+      githubUrl: "https://github.com/BD-YASSINE/Goldbike_store",
+      isPlaceholder: false,
     },
     {
       id: 3,
-      title: "Coming Soon",
-      description: "Another exciting project will be added here...",
-      technologies: ["Tech", "Stack", "Here", "+1"],
-      image: null,
-      githubUrl: "#",
-      isPlaceholder: true
-    }
+      title: "Illuvium_game",
+      description:
+        "A sleek and modern 3D landing page built using React.js and Tailwind CSS, designed for gaming websites. This is a frontend-only project focused on eye-catching visuals and user experience.",
+      technologies: ["React", "Tailwind CSS"],
+      image: "/src/assets/3.png",
+      githubUrl: "https://github.com/BD-YASSINE/Illuvium_game",
+      isPlaceholder: false,
+    },
   ];
 
   return (
     <div className="w-full z-10 pb-32 bg-black/80 text-white p-8">
       <div className="max-w-7xl mx-auto" ref={sectionRef}>
-        <h2 className={`text-5xl font-bold text-center mb-32 mt-20 text-yellow-400 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <h2
+          className={`text-5xl font-bold text-center mb-32 mt-20 text-yellow-400 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
           My Projects
         </h2>
 
@@ -65,11 +70,17 @@ const Projects = () => {
               <div
                 key={project.id}
                 className={`flex flex-col md:flex-row ${
-                  isImageLeft ? '' : 'md:flex-row-reverse'
+                  isImageLeft ? "" : "md:flex-row-reverse"
                 } items-center bg-gradient-to-br from-gray-900 to-black border-2 border-yellow-500/30 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:border-yellow-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:scale-105 min-h-[400px] ${
-                  project.isPlaceholder ? 'opacity-50' : ''
-                } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: isVisible ? `${index * 200}ms` : '0ms' }}
+                  project.isPlaceholder ? "opacity-50" : ""
+                } ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-20"
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 200}ms` : "0ms",
+                }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -83,7 +94,9 @@ const Projects = () => {
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                      <span className="text-gray-500 text-base">No Image Available</span>
+                      <span className="text-gray-500 text-base">
+                        No Image Available
+                      </span>
                     </div>
                   )}
 
@@ -91,7 +104,7 @@ const Projects = () => {
                   {hoveredProject === project.id && !project.isPlaceholder && (
                     <div className="absolute inset-0 bg-black/80 flex items-center justify-center transition-all duration-300">
                       <button
-                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        onClick={() => window.open(project.githubUrl, "_blank")}
                         className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2"
                       >
                         View on GitHub
@@ -102,16 +115,20 @@ const Projects = () => {
 
                 {/* Project Info */}
                 <div className="w-full md:w-1/2 md:pl-10 md:pr-10 flex flex-col">
-                  <h3 className="text-2xl font-bold text-yellow-400 mb-5">{project.title}</h3>
-                  <p className="text-gray-300 text-base mb-6 leading-relaxed">{project.description}</p>
+                  <h3 className="text-4xl font-bold text-yellow-400 mb-5">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
                         className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          tech.startsWith('+')
-                            ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
-                            : 'bg-yellow-500 text-black'
+                          tech.startsWith("+")
+                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                            : "bg-yellow-500 text-black"
                         }`}
                       >
                         {tech}
@@ -123,7 +140,9 @@ const Projects = () => {
                 {/* Placeholder overlay for future projects */}
                 {project.isPlaceholder && (
                   <div className="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center">
-                    <span className="text-gray-500 font-medium">Coming Soon</span>
+                    <span className="text-gray-500 font-medium">
+                      Coming Soon
+                    </span>
                   </div>
                 )}
               </div>
@@ -136,10 +155,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
-
-
-
-
-
-

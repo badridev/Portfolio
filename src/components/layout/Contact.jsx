@@ -48,17 +48,17 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 px-6">
       {/* Section Title */}
-      <h2 className="text-4xl font-bold text-center text-[#ffa800] mb-20">
+      <h2 className="text-4xl font-bold text-center text-[#ffa800] mb-12">
         Contact
       </h2>
 
       <div
-        className={`container mx-auto flex flex-col items-center space-y-12
+        className={`container mx-auto flex flex-col md:flex-row items-start justify-center space-y-12 md:space-y-0 md:space-x-12
                     ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
                     transition-all duration-700`}
       >
         {/* Find Me Card */}
-        <div className="w-full max-w-5xl h-80 bg-gray-900/70 p-12 rounded-3xl shadow-lg border-2 border-[#ffa800] 
+        <div className="flex-1 min-w-[400px] h-96 bg-gray-900/70 p-12 rounded-3xl shadow-lg border-2 border-[#ffa800] 
                         hover:shadow-[0_0_30px_#ffa800] transition-shadow duration-500 text-gray-300 text-sm">
           <h3 className="text-3xl font-bold text-[#ffa800] mb-4 text-center">Find Me Here</h3>
           <div className="w-24 h-1 bg-[#ffa800] mb-6 mx-auto"></div>
@@ -77,7 +77,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="w-full max-w-5xl h-auto bg-gray-900/70 p-12 rounded-3xl shadow-lg border-2 border-[#ffa800] 
+        <div className="flex-1 min-w-[400px] h-auto bg-gray-900/70 p-12 rounded-3xl shadow-lg border-2 border-[#ffa800] 
                         hover:shadow-[0_0_30px_#ffa800] transition-shadow duration-500">
           <form ref={form} onSubmit={sendEmail} className="flex flex-col space-y-6">
             <div className="flex items-center border-b border-gray-500 py-3 px-3 rounded-md">
@@ -133,6 +133,7 @@ const Contact = () => {
 };
 
 export default Contact;
+
 
 
 

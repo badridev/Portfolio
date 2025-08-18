@@ -53,7 +53,7 @@ const App = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden text-white">
+    <div className="relative min-h-screen bg-black overflow-x-hidden text-white">
       <Header activeSection={activeSection} sections={sections} />
 
       {/* Animated gradient background */}

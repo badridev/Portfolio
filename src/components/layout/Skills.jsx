@@ -45,15 +45,15 @@ const skills = [
 ];
 
 const Skills = () => {
-  const sectionRef = useRef();
   const [visible, setVisible] = useState(false);
+  const sectionRef = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); // Animate only once
         }
       },
       { threshold: 0.2 }
@@ -68,25 +68,23 @@ const Skills = () => {
       className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen"
     >
       <div className="container mx-auto text-center mb-16 max-w-5xl">
-        <h2 className={`text-5xl font-bold text-[#ffa800] mb-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          My Skills
-        </h2>
-        <p className={`text-gray-300 max-w-2xl mx-auto transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <h2 className="text-5xl font-bold text-[#ffa800] mb-4">My Skills</h2>
+        <p className="text-gray-300 max-w-2xl mx-auto">
           Here are my skills grouped by Front-End, Back-End, Database, and Tools. I love creating smooth and modern web experiences.
         </p>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {skills.map((category, catIndex) => (
-          <div key={category.category} className={`transition-all duration-700 delay-${catIndex * 150} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        {skills.map((category) => (
+          <div key={category.category}>
             <h3 className="text-3xl font-semibold text-[#ffa800] mb-6">{category.category}</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
               {category.skills.map((skill, index) => (
                 <div
                   key={skill.name}
                   className={`flex flex-col items-center p-4 bg-gray-900/50 rounded-lg neon-border hover:scale-105 transition-transform duration-300 cursor-pointer 
-                    ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                  style={{ transitionDelay: `${(catIndex * 200 + index * 100)}ms` }}
+                    ${visible ? "animate-fadeInUp" : "opacity-0"}`}
+                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
                 >
                   <div className="text-4xl mb-2">{skill.icon}</div>
                   <span className="relative text-gray-200 font-medium hover:text-[#ffa800] transition-colors duration-300">
@@ -104,7 +102,6 @@ const Skills = () => {
 };
 
 export default Skills;
-
 
 
 
