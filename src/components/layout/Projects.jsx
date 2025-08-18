@@ -8,7 +8,16 @@ import img3 from "../../assets/3.png";
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    // Detect screen size
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,6 +40,8 @@ const Projects = () => {
       title: "InventoryPro",
       description:
         "InventoryPro is a web-based inventory management application that helps businesses efficiently manage products, sales, and stock. It features an intuitive interface with real-time inventory tracking, product categorization, and sales monitoring. Built for usability and performance, it streamlines operations, reduces errors, and supports better decision-making through organized data management.",
+      shortDescription:
+        "InventoryPro helps businesses manage products, sales, and stock efficiently.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
       image: img1,
       githubUrl: "https://github.com/BD-YASSINE/InventoryPro",
@@ -40,6 +51,8 @@ const Projects = () => {
       title: "Goldbike_store",
       description:
         "A clean and modern homepage for a motorcycle store, built using only HTML and CSS. The design delivers a visually appealing layout with well-structured sections, responsive styling, and a user-friendly interface. Created without frameworks, this project showcases strong front-end fundamentals and the ability to craft elegant, functional designs using core web technologies.",
+      shortDescription:
+        "A modern homepage for a motorcycle store using HTML & CSS.",
       technologies: ["HTML", "CSS"],
       image: img2,
       githubUrl: "https://github.com/BD-YASSINE/Goldbike_store",
@@ -49,6 +62,8 @@ const Projects = () => {
       title: "Illuvium_game",
       description:
         "A modern and sleek 3D landing page built with React and Tailwind CSS, designed to deliver an engaging user experience with smooth animations, interactive elements, and eye-catching visuals. The project focuses on combining elegant UI design with responsive layouts, ensuring a seamless experience across devices while highlighting creativity and attention to detail.",
+      shortDescription:
+        "3D landing page built with React & Tailwind CSS with interactive elements.",
       technologies: ["React", "Tailwind CSS"],
       image: img3,
       githubUrl: "https://github.com/BD-YASSINE/Illuvium_game",
@@ -117,7 +132,9 @@ const Projects = () => {
                   {project.title}
                 </h3>
                 <p className="text-gray-300 text-lg mb-4 leading-relaxed">
-                  {project.description}
+                  {isMobile
+                    ? project.shortDescription
+                    : project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, i) => (
@@ -140,3 +157,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
