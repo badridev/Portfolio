@@ -1,89 +1,144 @@
-import React from "react";
-
-const projects = [
-  {
-    title: "Portfolio Website",
-    description: "A modern personal portfolio built with React and Tailwind CSS showcasing my projects and skills.",
-    technologies: ["React", "TailwindCSS", "Vite"],
-    link: "https://your-portfolio-link.com",
-    image: "/images/portfolio.png",
-  },
-  {
-    title: "Inventory Management App",
-    description: "A full-stack app for managing stock, sales, and analytics with authentication and role-based dashboards.",
-    technologies: ["React", "PHP", "MySQL"],
-    link: "https://your-inventory-link.com",
-    image: "/images/inventory.png",
-  },
-  {
-    title: "Hotel Booking Platform",
-    description: "Web app for booking rooms with real-time availability, hotel owner dashboards, and admin control.",
-    technologies: ["React", "PHP", "MySQL", "Tailwind"],
-    link: "https://your-hotel-link.com",
-    image: "/images/hotel.png",
-  },
-];
+import { useState, useEffect, useRef } from 'react';
 
 const Projects = () => {
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
+  const projects = [
+    {
+      id: 1,
+      title: "InventoryPro",
+      description: "Full-stack inventory management solution with React, Node.js, and MongoDB. Features include user authentication, payment integration...",
+      technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
+      image: "/src/assets/1.png",
+      githubUrl: "https://github.com/BD-YASSINE/InventoryPro"
+    },
+    {
+      id: 2,
+      title: "Coming Soon",
+      description: "Another exciting project will be added here...",
+      technologies: ["Tech", "Stack", "Here", "+1"],
+      image: null,
+      githubUrl: "#",
+      isPlaceholder: true
+    },
+    {
+      id: 3,
+      title: "Coming Soon",
+      description: "Another exciting project will be added here...",
+      technologies: ["Tech", "Stack", "Here", "+1"],
+      image: null,
+      githubUrl: "#",
+      isPlaceholder: true
+    }
+  ];
+
   return (
-    <section className="relative z-10 py-32 px-6 bg-black/80 text-white min-h-screen">
-      <div className="container mx-auto text-center mb-12 max-w-4xl">
-        <h2 className="text-4xl font-bold text-[#ffa800] mb-3">Projects</h2>
-        <p className="text-gray-300 text-sm">
-          Here are some of my recent projects. Each one taught me something new and improved my skills.
-        </p>
-      </div>
+    <div className="w-full z-10 bg-black/80 text-white p-8">
+      <div className="max-w-7xl mx-auto" ref={sectionRef}>
+        <h2 className={`text-5xl font-bold text-center mb-16 text-yellow-400 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          My Projects
+        </h2>
 
-      <div className="flex flex-col gap-8 max-w-5xl mx-auto">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row items-center md:items-start gap-6 bg-black/70 neon-border rounded-xl p-5 hover:scale-[1.01] transition-transform duration-300"
-          >
-            {/* Project Image */}
-            <div className="w-full md:w-1/3">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="rounded-lg shadow-lg w-full h-48 object-cover"
-              />
-            </div>
-
-            {/* Project Details */}
-            <div className="flex-1 text-left">
-              <h3 className="text-2xl font-semibold text-[#ffa800] mb-2">{project.title}</h3>
-              <p className="text-gray-300 text-sm mb-3">{project.description}</p>
-
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-3 mb-3">
-                {project.technologies.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 text-xs font-medium bg-gray-800/60 rounded-lg text-gray-200 hover:text-[#ffa800] transition-colors"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Link */}
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-sm text-[#ffa800] font-medium hover:underline"
+        <div className="flex flex-col gap-16">
+          {projects.map((project, index) => {
+            const isImageLeft = index % 2 === 0; // Left for first, right for second, etc.
+            return (
+              <div
+                key={project.id}
+                className={`flex flex-col md:flex-row ${
+                  isImageLeft ? '' : 'md:flex-row-reverse'
+                } items-center bg-gradient-to-br from-gray-900 to-black border-2 border-yellow-500/30 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:border-yellow-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:scale-105 min-h-[400px] ${
+                  project.isPlaceholder ? 'opacity-50' : ''
+                } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: isVisible ? `${index * 200}ms` : '0ms' }}
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
               >
-                🔗 View Project
-              </a>
-            </div>
-          </div>
-        ))}
+                {/* Project Image */}
+                <div className="relative w-full md:w-1/2 h-64 md:h-80 bg-black/50 rounded-lg flex items-center justify-center overflow-hidden shadow-lg mb-6 md:mb-0">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                      <span className="text-gray-500 text-base">No Image Available</span>
+                    </div>
+                  )}
+
+                  {/* GitHub Button - Shows on Hover */}
+                  {hoveredProject === project.id && !project.isPlaceholder && (
+                    <div className="absolute inset-0 bg-black/80 flex items-center justify-center transition-all duration-300">
+                      <button
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2"
+                      >
+                        View on GitHub
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Info */}
+                <div className="w-full md:w-1/2 md:pl-10 md:pr-10 flex flex-col">
+                  <h3 className="text-2xl font-bold text-yellow-400 mb-5">{project.title}</h3>
+                  <p className="text-gray-300 text-base mb-6 leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          tech.startsWith('+')
+                            ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                            : 'bg-yellow-500 text-black'
+                        }`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Placeholder overlay for future projects */}
+                {project.isPlaceholder && (
+                  <div className="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center">
+                    <span className="text-gray-500 font-medium">Coming Soon</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 export default Projects;
+
+
+
 
 
 

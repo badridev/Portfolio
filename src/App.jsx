@@ -80,7 +80,7 @@ const App = () => {
       <section
         id="projects"
         ref={(el) => (sectionRefs.current["projects"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+        className="min-h-screen flex justify-center items-center  text-gray-300 text-4xl"
       >
         <Projects />
       </section>
