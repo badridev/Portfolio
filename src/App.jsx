@@ -17,7 +17,6 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
-// ✅ Reusable Section Title Component
 const SectionTitle = ({ children }) => (
   <div className="text-center mb-12">
     <h2 className="text-4xl font-bold text-[#ffa800]">{children}</h2>
@@ -104,7 +103,13 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
 
-  // ⬆️ Show scroll-to-top button
+  // 🌟 Dynamic browser tab title
+  useEffect(() => {
+    const section = sections.find((sec) => sec.id === activeSection);
+    document.title = section ? `${section.label} - Yassine Badri` : "Yassine Badri";
+  }, [activeSection]);
+
+  // ⬆️ Scroll-to-top button
   useEffect(() => {
     const handleScroll = () => setShowScroll(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
@@ -158,6 +163,8 @@ const App = () => {
 };
 
 export default App;
+
+
 
 
 

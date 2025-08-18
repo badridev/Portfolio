@@ -25,7 +25,7 @@ const Projects = () => {
       id: 1,
       title: "InventoryPro",
       description:
-        "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage their products, sales, and stock. It offers a centralized dashboard that provides real-time insights into business activity, allowing users to make data-driven decisions.",
+        "InventoryPro is a comprehensive web-based inventory management application designed to help businesses efficiently manage products, sales, and stock.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
       image: "/src/assets/1.png",
       githubUrl: "https://github.com/BD-YASSINE/InventoryPro",
@@ -34,117 +34,103 @@ const Projects = () => {
       id: 2,
       title: "Goldbike_store",
       description:
-        "home page of motorcycles store modern design created using html & css only",
+        "Home page of motorcycles store with modern design created using HTML & CSS only.",
       technologies: ["HTML", "CSS"],
       image: "/src/assets/2.png",
       githubUrl: "https://github.com/BD-YASSINE/Goldbike_store",
-      isPlaceholder: false,
     },
     {
       id: 3,
       title: "Illuvium_game",
       description:
-        "A sleek and modern 3D landing page built using React.js and Tailwind CSS, designed for gaming websites. This is a frontend-only project focused on eye-catching visuals and user experience.",
+        "A sleek 3D landing page built using React and Tailwind CSS, focused on eye-catching visuals and UX.",
       technologies: ["React", "Tailwind CSS"],
       image: "/src/assets/3.png",
       githubUrl: "https://github.com/BD-YASSINE/Illuvium_game",
-      isPlaceholder: false,
     },
   ];
 
   return (
-    <div className="w-full z-10 pb-32 bg-black/80 text-white p-8">
-      <div className="max-w-7xl mx-auto" ref={sectionRef}>
-
-        <div className="flex flex-col gap-16">
-          {projects.map((project, index) => {
-            const isImageLeft = index % 2 === 0; // Left for first, right for second, etc.
-            return (
-              <div
-                key={project.id}
-                className={`flex flex-col md:flex-row ${
-                  isImageLeft ? "" : "md:flex-row-reverse"
-                } items-center bg-gradient-to-bl from-gray-900 to-black border-2 border-yellow-500/30 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:border-yellow-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:scale-105 min-h-[400px] ${
-                  project.isPlaceholder ? "opacity-50" : ""
-                } ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-20"
-                }`}
-                style={{
-                  transitionDelay: isVisible ? `${index * 200}ms` : "0ms",
-                }}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-              >
-                {/* Project Image */}
-                <div className="relative w-full md:w-1/2 h-64 md:h-80 bg-black/50 rounded-lg flex items-center justify-center overflow-hidden shadow-lg mb-6 md:mb-0">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={`${project.title} screenshot`}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                      <span className="text-gray-500 text-base">
-                        No Image Available
-                      </span>
-                    </div>
-                  )}
-
-                  {/* GitHub Button - Shows on Hover */}
-                  {hoveredProject === project.id && !project.isPlaceholder && (
-                    <div className="absolute inset-0 bg-black/80 flex items-center justify-center transition-all duration-300">
-                      <button
-                        onClick={() => window.open(project.githubUrl, "_blank")}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2"
-                      >
-                        View on GitHub
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Project Info */}
-                <div className="w-full md:w-1/2 md:pl-10 md:pr-10 flex flex-col">
-                  <h3 className="text-4xl font-bold text-yellow-400 mb-5">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          tech.startsWith("+")
-                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-                            : "bg-yellow-500 text-black"
-                        }`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Placeholder overlay for future projects */}
-                {project.isPlaceholder && (
-                  <div className="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center">
-                    <span className="text-gray-500 font-medium">
-                      Coming Soon
+    <section
+      ref={sectionRef}
+      className="w-full z-10 pb-32 bg-black/80 text-white px-6"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col gap-16">
+        {projects.map((project, index) => {
+          const isImageLeft = index % 2 === 0;
+          return (
+            <div
+              key={project.id}
+              className={`flex flex-col md:flex-row ${
+                isImageLeft ? "" : "md:flex-row-reverse"
+              } items-center bg-gray-900/70 border-2 border-yellow-500/20 rounded-2xl p-6 md:p-10 transition-all duration-700 hover:scale-105 hover:border-yellow-500 hover:shadow-xl hover:shadow-yellow-500/30 min-h-[400px] ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-20"
+              }`}
+              style={{
+                transitionDelay: isVisible ? `${index * 200}ms` : "0ms",
+              }}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {/* Project Image */}
+              <div className="relative w-full md:w-1/2 h-64 md:h-80 bg-black/50 rounded-lg flex items-center justify-center overflow-hidden shadow-lg mb-6 md:mb-0">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-gray-500 text-base">
+                      No Image Available
                     </span>
                   </div>
                 )}
+
+                {/* GitHub Button */}
+                {hoveredProject === project.id && (
+                  <div className="absolute inset-0 bg-black/70 flex items-center justify-center transition-all duration-300">
+                    <button
+                      onClick={() =>
+                        window.open(project.githubUrl, "_blank")
+                      }
+                      className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      View on GitHub
+                    </button>
+                  </div>
+                )}
               </div>
-            );
-          })}
-        </div>
+
+              {/* Project Info */}
+              <div className="w-full md:w-1/2 md:pl-10 md:pr-10 flex flex-col">
+                <h3 className="text-3xl md:text-4xl font-bold text-yellow-400 mb-4">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 text-lg mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium border border-yellow-500/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Projects;
+
