@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Header from "./components/layout/Header";
 import Skills from "./components/layout/Skills";
 import Home from "./components/layout/Home"; // Your home component
-import './App.css';
-
+import "./App.css";
+import About from "./components/layout/About"; // Your about component
+import Projects from "./components/layout/Projects"; // Your projects component
+import Contact from "./components/layout/Contact"; // Your contact component
 
 const sections = [
   { id: "home", label: "Home" },
@@ -68,9 +70,11 @@ const App = () => {
       <section
         id="about"
         ref={(el) => (sectionRefs.current["about"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl px-6"
       >
-        About Section
+        <div className="w-full max-w-5xl">
+          <About />
+        </div>
       </section>
 
       <section
@@ -78,7 +82,7 @@ const App = () => {
         ref={(el) => (sectionRefs.current["projects"] = el)}
         className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
       >
-        Projects Section
+        <Projects />
       </section>
 
       <section
@@ -86,13 +90,10 @@ const App = () => {
         ref={(el) => (sectionRefs.current["contact"] = el)}
         className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
       >
-        Contact Section
+        <Contact />
       </section>
     </div>
   );
 };
 
 export default App;
-
-
-

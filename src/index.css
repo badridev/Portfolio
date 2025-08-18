@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.neon-border {
+  position: relative;
+  z-index: 0;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px; /* border thickness */
+  background: linear-gradient(270deg, #000, #ffa800, #000, #ffa800, #000);
+  background-size: 400% 400%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-origin: border-box;
+  mask-origin: border-box;
+  animation: neonMove 15s linear infinite; /* slower animation */
+  z-index: -1;
+  border-radius: inherit;
+}
+
+@keyframes neonMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.neon-glow {
+  background: rgba(255, 168, 0, 0.1);
+  box-shadow: 0 0 15px rgba(255, 168, 0, 0.5), 0 0 30px rgba(255, 168, 0, 0.3);
+  border: 1px solid rgba(255, 168, 0, 0.5);
+}
+@keyframes pulse-neon {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 15px #ffa800, 0 0 30px #ffdd55; }
+  50% { opacity: 1; box-shadow: 0 0 25px #ffa800, 0 0 50px #ffdd55; }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 2.5s infinite;
+}
