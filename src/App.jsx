@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { FaArrowUp } from "react-icons/fa";
+
 import Header from "./components/layout/Header";
 import Skills from "./components/layout/Skills";
-import Home from "./components/layout/Home"; // Your home component
+import Home from "./components/layout/Home";
+import About from "./components/layout/About";
+import Projects from "./components/layout/Projects";
+import Contact from "./components/layout/Contact";
 import "./App.css";
-import About from "./components/layout/About"; // Your about component
-import Projects from "./components/layout/Projects"; // Your projects component
-import Contact from "./components/layout/Contact"; // Your contact component
 
 const sections = [
   { id: "home", label: "Home" },
@@ -17,6 +19,7 @@ const sections = [
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [showScroll, setShowScroll] = useState(false);
   const sectionRefs = useRef({});
 
   useEffect(() => {
@@ -39,6 +42,18 @@ const App = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden text-white">
@@ -80,7 +95,7 @@ const App = () => {
       <section
         id="projects"
         ref={(el) => (sectionRefs.current["projects"] = el)}
-        className="min-h-screen flex justify-center items-center  text-gray-300 text-4xl"
+        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
       >
         <Projects />
       </section>
@@ -92,8 +107,19 @@ const App = () => {
       >
         <Contact />
       </section>
+
+      {/* Scroll-to-top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 p-3 bg-yellow-500 text-black rounded-full shadow-lg transition-all duration-500 z-50
+          ${showScroll ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
+        `}
+      >
+        <FaArrowUp />
+      </button>
     </div>
   );
 };
 
 export default App;
+

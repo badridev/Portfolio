@@ -52,7 +52,7 @@ const Projects = () => {
   return (
     <div className="w-full z-10 bg-black/80 text-white p-8">
       <div className="max-w-7xl mx-auto" ref={sectionRef}>
-        <h2 className={`text-5xl font-bold text-center mb-16 text-yellow-400 transition-all duration-1000 ${
+        <h2 className={`text-5xl font-bold text-center mb-32 mt-20 text-yellow-400 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           My Projects
