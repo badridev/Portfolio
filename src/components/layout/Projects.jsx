@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
 // ✅ Import images from src/assets
-import img1 from "../../../public/assets/1.png";
-import img2 from "../../../public/assets/2.png";
-import img3 from "../../../public/assets/3.png";
+import img1 from "../../assets/1.png";
+import img2 from "../../assets/2.png";
+import img3 from "../../assets/3.png";
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
