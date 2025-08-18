@@ -148,6 +148,12 @@ const Contact = () => {
             )}
           </form>
         </div>
+        
+      </div>
+      <div className="max-w-5xl mx-auto text-center mt-32">
+        <p className="text-sm inline-block transition-colors duration-300 hover:text-[#ffa800] cursor-pointer">
+          &copy; {new Date().getFullYear()} Yassine Badri. All rights reserved.
+        </p>
       </div>
     </section>
   );

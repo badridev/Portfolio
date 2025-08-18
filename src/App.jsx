@@ -7,7 +7,7 @@ import Home from "./components/layout/Home";
 import About from "./components/layout/About";
 import Projects from "./components/layout/Projects";
 import Contact from "./components/layout/Contact";
-import Footer from "./components/layout/Footer"; // ✅ Import Footer
+
 import "./App.css";
 
 const sections = [
@@ -151,8 +151,6 @@ const App = () => {
         <Contact />
       </section>
 
-      {/* Footer */}
-      <Footer />
 
       {/* ⬆️ Scroll-to-top Button */}
       <button
