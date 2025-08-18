@@ -1,142 +1,115 @@
-import React, { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { FaPaperPlane, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [controls, inView]);
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  const container = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
+    emailjs
+      .sendForm(
+        "service_gr39mw7", // replace with your Service ID
+        "template_pjn1ryd", // replace with your Template ID
+        e.target,
+        "fN4jubS2FrCBMGlYv" // your Public Key
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          e.target.reset();
+          setLoading(false);
+        },
+        (error) => {
+          alert("Failed to send message. Try again.");
+          console.log(error.text);
+          setLoading(false);
+        }
+      );
   };
 
   return (
-    <section
-      ref={ref}
-      className="relative z-10 w-full px-6 py-24  text-white flex flex-col items-center gap-16"
-    >
-      {/* Section Title */}
-      <motion.h2
-        variants={container}
-        initial="hidden"
-        animate={controls}
-        className="text-5xl font-bold text-yellow-400 text-center"
-      >
-        Contact Me
-      </motion.h2>
+    <section id="contact" className="py-20 bg-black/70 backdrop-blur-md">
+      <div className="container mx-auto px-6">
+        {/* Title */}
+        <h2 className="text-3xl md:text-4xl font-bold text-[#ffa800] mb-8 text-center animate-fadeIn">
+          Contact Me
+        </h2>
 
-      <motion.p
-        variants={item}
-        custom={0}
-        initial="hidden"
-        animate={controls}
-        className="text-gray-300 text-center max-w-2xl"
-      >
-        I’m open to freelance opportunities or any web development projects. Send me a message and I’ll get back to you as soon as possible.
-      </motion.p>
+        <div className="flex flex-col md:flex-row md:space-x-10 animate-fadeIn">
+          {/* Contact Info */}
+          <div className="md:w-1/2 mb-8 md:mb-0 space-y-6 text-gray-300">
+            <div className="flex items-center space-x-4">
+              <FaEnvelope className="text-[#ffa800]" />
+              <span className="text-lg">yassine@example.com</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <FaPhone className="text-[#ffa800]" />
+              <span className="text-lg">+212 6XXXXXXXX</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <FaMapMarkerAlt className="text-[#ffa800]" />
+              <span className="text-lg">Casablanca, Morocco</span>
+            </div>
+          </div>
 
-      {/* Contact Info Cards */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate={controls}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl text-center"
-      >
-        <motion.div
-          variants={item}
-          custom={1}
-          className="flex flex-col items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
-        >
-          <MdEmail className="text-yellow-400 text-4xl" />
-          <h3 className="text-base font-semibold text-yellow-400">Email</h3>
-          <p className="text-gray-300 text-sm">yassine@example.com</p>
-          <span className="block h-px w-16 bg-yellow-500 mt-2"></span>
-        </motion.div>
+          {/* Contact Form */}
+          <form
+            onSubmit={sendEmail}
+            className="md:w-1/2 flex flex-col space-y-4"
+          >
+            <div className="flex items-center border-b border-gray-500 py-2">
+              <FaUser className="text-gray-300 mr-2" />
+              <input
+                type="text"
+                name="user_name"
+                placeholder="Your Name"
+                required
+                className="bg-transparent flex-1 outline-none text-gray-300 placeholder-gray-400"
+              />
+            </div>
 
-        <motion.div
-          variants={item}
-          custom={2}
-          className="flex flex-col items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
-        >
-          <MdPhone className="text-yellow-400 text-4xl" />
-          <h3 className="text-base font-semibold text-yellow-400">Phone</h3>
-          <p className="text-gray-300 text-sm">+212 600 000 000</p>
-          <span className="block h-px w-16 bg-yellow-500 mt-2"></span>
-        </motion.div>
+            <div className="flex items-center border-b border-gray-500 py-2">
+              <FaEnvelope className="text-gray-300 mr-2" />
+              <input
+                type="email"
+                name="user_email"
+                placeholder="Your Email"
+                required
+                className="bg-transparent flex-1 outline-none text-gray-300 placeholder-gray-400"
+              />
+            </div>
 
-        <motion.div
-          variants={item}
-          custom={3}
-          className="flex flex-col items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
-        >
-          <MdLocationOn className="text-yellow-400 text-4xl" />
-          <h3 className="text-base font-semibold text-yellow-400">Location</h3>
-          <p className="text-gray-300 text-sm">Morocco</p>
-          <span className="block h-px w-16 bg-yellow-500 mt-2"></span>
-        </motion.div>
-      </motion.div>
+            <div className="flex items-start border-b border-gray-500 py-2">
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                required
+                className="bg-transparent flex-1 outline-none text-gray-300 placeholder-gray-400 resize-none h-32"
+              />
+            </div>
 
-      {/* Contact Form */}
-      <motion.form
-        variants={container}
-        initial="hidden"
-        animate={controls}
-        className="w-full max-w-3xl flex flex-col gap-4"
-      >
-        <motion.input
-          variants={item}
-          custom={4}
-          type="text"
-          placeholder="Your Name"
-          className="w-full p-3 rounded-lg bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 border-b-2 border-yellow-500 transition"
-        />
-        <motion.input
-          variants={item}
-          custom={5}
-          type="email"
-          placeholder="Your Email"
-          className="w-full p-3 rounded-lg bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 border-b-2 border-yellow-500 transition"
-        />
-        <motion.textarea
-          variants={item}
-          custom={6}
-          placeholder="Your Message"
-          rows={5}
-          className="w-full p-3 rounded-lg bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 border-b-2 border-yellow-500 transition"
-        />
-        <motion.button
-          variants={item}
-          custom={7}
-          type="submit"
-          className="self-start bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg hover:bg-yellow-600 transition"
-        >
-          Send Message
-        </motion.button>
-      </motion.form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex items-center justify-center bg-[#ffa800] hover:bg-yellow-600 transition-colors duration-300 text-black font-semibold py-3 px-6 rounded-md space-x-2"
+            >
+              <FaPaperPlane />
+              <span>{loading ? "Sending..." : "Send Message"}</span>
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   );
 };
 
 export default Contact;
+
+
+
 
 
 
