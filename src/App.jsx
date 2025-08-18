@@ -92,7 +92,7 @@ const App = () => {
       <section
         id="projects"
         ref={(el) => (sectionRefs.current["projects"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+        className="min-h-screen  flex justify-center items-center text-gray-300 text-4xl"
       >
         <Projects />
       </section>
@@ -100,7 +100,7 @@ const App = () => {
       <section
         id="contact"
         ref={(el) => (sectionRefs.current["contact"] = el)}
-        className="min-h-screen flex justify-center items-center text-gray-300 text-4xl"
+        className="w-full flex justify-center items-center text-gray-300 text-4xl"
       >
         <Contact />
       </section>
