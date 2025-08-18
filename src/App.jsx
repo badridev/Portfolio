@@ -7,6 +7,7 @@ import Home from "./components/layout/Home";
 import About from "./components/layout/About";
 import Projects from "./components/layout/Projects";
 import Contact from "./components/layout/Contact";
+import Footer from "./components/layout/Footer"; // ✅ Import Footer
 import "./App.css";
 
 const sections = [
@@ -119,7 +120,7 @@ const App = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className="relative min-h-screen bg-black overflow-x-hidden text-white">
+    <div className="relative min-h-screen bg-black overflow-x-hidden text-white flex flex-col">
       <Header activeSection={activeSection} sections={sections} />
 
       {/* 🌌 Neon Stars Background */}
@@ -149,6 +150,9 @@ const App = () => {
         <SectionTitle>Contact Me</SectionTitle>
         <Contact />
       </section>
+
+      {/* Footer */}
+      <Footer />
 
       {/* ⬆️ Scroll-to-top Button */}
       <button
