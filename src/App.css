@@ -1,17 +1,1 @@
-/* Neon glow effect */
-@keyframes neonGlow {
-  0% {
-    box-shadow: 0 0 5px #ffa800, 0 0 10px #ffa800, 0 0 20px #ffa800, 0 0 30px #ffa800;
-  }
-  50% {
-    box-shadow: 0 0 10px #ffa800, 0 0 20px #ffa800, 0 0 30px #ffa800, 0 0 40px #ffa800;
-  }
-  100% {
-    box-shadow: 0 0 5px #ffa800, 0 0 10px #ffa800, 0 0 20px #ffa800, 0 0 30px #ffa800;
-  }
-}
-
-.neon-card {
-  animation: neonGlow 3s ease-in-out infinite;
-}
 
