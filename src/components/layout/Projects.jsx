@@ -94,9 +94,7 @@ const Projects = () => {
                 {hoveredProject === project.id && (
                   <div className="absolute inset-0 bg-black/70 flex items-center justify-center transition-all duration-300">
                     <button
-                      onClick={() =>
-                        window.open(project.githubUrl, "_blank")
-                      }
+                      onClick={() => window.open(project.githubUrl, "_blank")}
                       className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                     >
                       View on GitHub
@@ -133,4 +131,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
