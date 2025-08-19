@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiMysql, SiMongodb, SiExpress,
-  SiPostman, SiBootstrap, SiCanva,SiDocker,
+  SiPostman, SiBootstrap, SiCanva, SiDocker,
 } from "react-icons/si";
 
 const skillsData = [
@@ -57,10 +57,21 @@ const skillsData = [
 const Skills = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [visible, setVisible] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef();
 
   const allSkills = skillsData.flatMap((tab) => tab.skills);
 
+  // ✅ Detect screen size for mobile
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  // ✅ Reveal on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -76,10 +87,15 @@ const Skills = () => {
   }, []);
 
   const tabs = ["All", ...skillsData.map((tab) => tab.category)];
-  const skillsToShow =
+  let skillsToShow =
     activeTab === "All"
       ? allSkills
       : skillsData.find((tab) => tab.category === activeTab).skills;
+
+  // ✅ On mobile, limit "All" to 6 unless showMore is true
+  if (activeTab === "All" && isMobile && !showMore) {
+    skillsToShow = skillsToShow.slice(0, 6);
+  }
 
   return (
     <section
@@ -91,7 +107,10 @@ const Skills = () => {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => {
+              setActiveTab(tab);
+              setShowMore(false); // reset "see more" when changing tabs
+            }}
             className={`px-4 py-2 rounded-full font-medium transition-colors duration-300
               ${
                 activeTab === tab
@@ -107,16 +126,14 @@ const Skills = () => {
       {/* Skills Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {skillsToShow.map((skill, i) => (
-          // Wrapper handles ENTRY animation (transform/opacity)
           <div
             key={skill.name}
             className="opacity-0"
             style={{
               animation: visible ? `fadeUp 0.7s ease-out forwards` : "none",
-              animationDelay: `${i * 100}ms`,
+              animationDelay: activeTab === "All" ? "0ms" : `${i * 100}ms`,
             }}
           >
-            {/* Inner card handles HOVER scale only */}
             <div
               className="flex flex-col items-center p-6 rounded-2xl shadow-lg transition-transform duration-500 hover:scale-95"
               style={{
@@ -136,6 +153,18 @@ const Skills = () => {
         ))}
       </div>
 
+      {/* See More button (only on mobile in All tab) */}
+      {activeTab === "All" && isMobile && !showMore && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowMore(true)}
+            className="px-6 py-2 bg-[#ffa800] text-black font-medium rounded-full shadow-md hover:bg-[#ffb733] transition"
+          >
+            See More ...
+          </button>
+        </div>
+      )}
+
       <style>{`
         @keyframes fadeUp {
           0% { opacity: 0; transform: translateY(20px) scale(0.95); }
@@ -147,4 +176,6 @@ const Skills = () => {
 };
 
 export default Skills;
+
+
 
