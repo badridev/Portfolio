@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiMysql, SiMongodb, SiExpress,
-  SiPostman, SiBootstrap, SiCanva,
+  SiPostman, SiBootstrap, SiCanva,SiDocker,
 } from "react-icons/si";
 
 const skillsData = [
@@ -49,6 +49,7 @@ const skillsData = [
       { name: "Figma", icon: <FaFigma />, color: "#f24e1e" },
       { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
       { name: "Canva", icon: <SiCanva />, color: "#00C4CC" },
+      { name: "Docker", icon: <SiDocker />, color: "#2496ED" },
     ],
   },
 ];
