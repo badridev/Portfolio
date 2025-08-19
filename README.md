@@ -1,12 +1,45 @@
-# React + Vite
+# 🚀 My Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio website!  
+This project showcases my skills, projects, and experiences as a **Full-Stack Developer**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
 
-## Expanding the ESLint configuration
+👉 [View Portfolio](https://bd-yassine.github.io/Portfolio/index.html)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Preview
+
+![Portfolio Screenshot](/public/screenshots/screenshot.png)
+
+---
+
+## 🛠️ Built With
+
+- **React.js**
+- **Tailwind CSS**
+
+---
+
+## 📂 Features
+
+- ✨ Modern and responsive design  
+- 🖼️ Project showcase with descriptions  
+- 📊 Skills section with categorized tech stack  
+- 📞 Contact form with email integration  
+- 🎨 Smooth animations and transitions  
+
+---
+
+## 📬 Contact
+
+💼 [LinkedIn](https://www.linkedin.com/in/yassine-badri-0279a7342/)  
+🐙 [GitHub](https://github.com/BD-YASSINE)  
+📧 yassine.badrii18@gmail.com   
+
+---
+
+⭐ If you like this project, don’t forget to give it a **star**!
