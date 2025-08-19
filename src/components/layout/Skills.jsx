@@ -1,25 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaPhp,
-  FaLaravel,
-  FaNodeJs,
-  FaGitAlt,
-  FaGithub,
-  FaFigma,
-  FaCode,
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaLaravel,
+  FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaCode,
 } from "react-icons/fa";
 import {
-  SiTailwindcss,
-  SiMysql,
-  SiMongodb,
-  SiExpress,
-  SiPostman,
-  SiBootstrap,
-  SiCanva,
+  SiTailwindcss, SiMysql, SiMongodb, SiExpress,
+  SiPostman, SiBootstrap, SiCanva,
 } from "react-icons/si";
 
 const skillsData = [
@@ -42,7 +28,7 @@ const skillsData = [
       { name: "PHP", icon: <FaPhp />, color: "#8892be" },
       { name: "Laravel", icon: <FaLaravel />, color: "#ff2d20" },
       { name: "Node.js", icon: <FaNodeJs />, color: "#3c873a" },
-      { name: "Express.js", icon: <SiExpress />, color: "#888888" }, // Gray
+      { name: "Express.js", icon: <SiExpress />, color: "#888888" },
     ],
   },
   {
@@ -72,7 +58,6 @@ const Skills = () => {
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef();
 
-  // Flatten all skills for "All" tab
   const allSkills = skillsData.flatMap((tab) => tab.skills);
 
   useEffect(() => {
@@ -90,7 +75,6 @@ const Skills = () => {
   }, []);
 
   const tabs = ["All", ...skillsData.map((tab) => tab.category)];
-
   const skillsToShow =
     activeTab === "All"
       ? allSkills
@@ -112,8 +96,7 @@ const Skills = () => {
                 activeTab === tab
                   ? "bg-[#ffa800] text-black"
                   : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-              }
-            `}
+              }`}
           >
             {tab}
           </button>
@@ -123,37 +106,39 @@ const Skills = () => {
       {/* Skills Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {skillsToShow.map((skill, i) => (
+          // Wrapper handles ENTRY animation (transform/opacity)
           <div
             key={skill.name}
-            className={`flex flex-col items-center p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500 opacity-0`}
+            className="opacity-0"
             style={{
               animation: visible ? `fadeUp 0.7s ease-out forwards` : "none",
               animationDelay: `${i * 100}ms`,
-              backgroundColor:
-                skill.color === "#888888" ? "#444" : `${skill.color}22`,
             }}
           >
-            <div className="text-5xl mb-3" style={{ color: skill.color }}>
-              {skill.icon}
+            {/* Inner card handles HOVER scale only */}
+            <div
+              className="flex flex-col items-center p-6 rounded-2xl shadow-lg transition-transform duration-500 hover:scale-95"
+              style={{
+                backgroundColor:
+                  skill.color === "#888888" ? "#444" : `${skill.color}22`,
+              }}
+            >
+              <div className="text-5xl mb-3" style={{ color: skill.color }}>
+                {skill.icon}
+              </div>
+              <span className="text-lg font-medium text-gray-200 hover:text-[#ffa800] transition-colors duration-300">
+                {skill.name}
+                <span className="block h-1 w-8 bg-[#ffa800] mt-2 rounded-full mx-auto"></span>
+              </span>
             </div>
-            <span className="text-lg font-medium text-gray-200 hover:text-[#ffa800] transition-colors duration-300">
-              {skill.name}
-              <span className="block h-1 w-8 bg-[#ffa800] mt-2 rounded-full mx-auto"></span>
-            </span>
           </div>
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeUp {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
         }
       `}</style>
     </section>
@@ -161,3 +146,4 @@ const Skills = () => {
 };
 
 export default Skills;
+
