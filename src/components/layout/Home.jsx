@@ -90,12 +90,13 @@ const Home = () => {
         variants={fadeUp}
       >
         <a
-          href="/YASSINE_BADRI_CV.pdf"
-          download
+          href={`${import.meta.env.BASE_URL}YASSINE_BADRI_CV.pdf`}
+          download="Yassine_Badri_CV.pdf"
           className="px-6 py-3 rounded-md bg-[#ffa800] text-black font-semibold hover:bg-opacity-80 transition"
         >
           Download CV
         </a>
+
         <a
           href="#contact"
           className="px-6 py-3 rounded-md border border-[#ffa800] text-[#ffa800] font-semibold hover:bg-[#ffa800] hover:text-black transition"
