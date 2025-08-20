@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-const titles = ["Front-End Developer", "Back-End Developer", "Full-Stack Developer"];
+const titles = [
+  "Front-End Developer",
+  "Back-End Developer",
+  "Full-Stack Developer",
+];
 
 const Home = () => {
   const [currentTitle, setCurrentTitle] = useState(0);
@@ -16,12 +20,20 @@ const Home = () => {
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const titleVariant = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
     exit: { opacity: 0, y: -20, transition: { duration: 0.6, ease: "easeIn" } },
   };
 
@@ -66,16 +78,19 @@ const Home = () => {
         className="text-gray-400 max-w-2xl mb-8 text-center"
         variants={fadeUp}
       >
-        I’m a passionate web developer focused on creating modern, user-friendly,
-        and scalable web applications using the latest technologies. I enjoy
-        turning ideas into impactful digital solutions with clean design and
-        efficient code.
+        I’m a passionate web developer focused on creating modern,
+        user-friendly, and scalable web applications using the latest
+        technologies. I enjoy turning ideas into impactful digital solutions
+        with clean design and efficient code.
       </motion.p>
 
       {/* Buttons */}
-      <motion.div className="flex flex-col sm:flex-row gap-4 mb-8" variants={fadeUp}>
+      <motion.div
+        className="flex flex-col sm:flex-row gap-4 mb-8"
+        variants={fadeUp}
+      >
         <a
-          href="/Yassine_Badri_CV.pdf"
+          href="/YASSINE_BADRI_CV.pdf"
           download
           className="px-6 py-3 rounded-md bg-[#ffa800] text-black font-semibold hover:bg-opacity-80 transition"
         >
@@ -90,7 +105,10 @@ const Home = () => {
       </motion.div>
 
       {/* Social icons */}
-      <motion.div className="flex gap-6 text-2xl text-gray-300" variants={fadeUp}>
+      <motion.div
+        className="flex gap-6 text-2xl text-gray-300"
+        variants={fadeUp}
+      >
         <a
           href="https://www.linkedin.com/in/yassine-badri-0279a7342/"
           target="_blank"
@@ -129,5 +147,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

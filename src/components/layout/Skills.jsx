@@ -1,12 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaLaravel,
-  FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaCode,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaPhp,
+  FaLaravel,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+  FaFigma,
+  FaCode,
 } from "react-icons/fa";
 import {
-  SiTailwindcss, SiMysql, SiMongodb, SiExpress,
-  SiPostman, SiBootstrap, SiCanva, SiDocker,
+  SiTailwindcss,
+  SiMysql,
+  SiMongodb,
+  SiExpress,
+  SiPostman,
+  SiBootstrap,
+  SiCanva,
+  SiDocker,
 } from "react-icons/si";
+import { FaUsers, FaComments, FaLightbulb } from "react-icons/fa";
+import { GiWorld } from "react-icons/gi"; // For languages
 
 const skillsData = [
   {
@@ -50,6 +67,25 @@ const skillsData = [
       { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
       { name: "Canva", icon: <SiCanva />, color: "#00C4CC" },
       { name: "Docker", icon: <SiDocker />, color: "#2496ED" },
+    ],
+  },
+  {
+    category: "Soft Skills",
+    color: "#FF8C00",
+    skills: [
+      { name: "Problem Solving", icon: <FaLightbulb />, color: "#FF8C00" },
+      { name: "Teamwork", icon: <FaUsers />, color: "#6e5494" },
+      { name: "Communication", icon: <FaComments />, color: "#00C4CC" },
+      { name: "Adaptability", icon: <FaUsers />, color: "#61dafb" },
+    ],
+  },
+  {
+    category: "Languages",
+    color: "#00BFFF",
+    skills: [
+      { name: "English", icon: <GiWorld />, color: "#1E90FF" },
+      { name: "French", icon: <GiWorld />, color: "#FF69B4" },
+      { name: "Arabic", icon: <GiWorld />, color: "#32CD32" },
     ],
   },
 ];
@@ -176,6 +212,3 @@ const Skills = () => {
 };
 
 export default Skills;
-
-
-
