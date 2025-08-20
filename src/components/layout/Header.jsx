@@ -14,8 +14,8 @@ const Header = ({ activeSection, sections }) => {
 
   return (
     <header className="w-full fixed top-0 z-50 bg-black/70 backdrop-blur-md shadow-md">
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        {/* Logo */}
+      <div className="container mx-auto relative flex items-center justify-between py-4 px-6">
+        {/* Logo (left) */}
         <div
           className="text-2xl font-bold text-[#ffa800] cursor-pointer"
           onClick={() => handleScroll("home")}
@@ -23,8 +23,8 @@ const Header = ({ activeSection, sections }) => {
           Yassine Badri
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex">
+        {/* Desktop Navigation (centered) */}
+        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2">
           <ul className="flex space-x-8 font-medium text-gray-300">
             {sections.map((section) => (
               <li
@@ -44,18 +44,20 @@ const Header = ({ activeSection, sections }) => {
                 {/* underline */}
                 <span
                   className={`
-            absolute left-0 -bottom-1 h-[2px] bg-[#ffa800] transition-all duration-300 
-            ${
-              activeSection === section.id ? "w-full" : "w-0 group-hover:w-full"
-            }
-          `}
+                    absolute left-0 -bottom-1 h-[2px] bg-[#ffa800] transition-all duration-300 
+                    ${
+                      activeSection === section.id
+                        ? "w-full"
+                        : "w-0 group-hover:w-full"
+                    }
+                  `}
                 ></span>
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* GitHub Icon */}
+        {/* GitHub Icon (right) */}
         <a
           href="https://github.com/BD-YASSINE"
           target="_blank"
@@ -65,7 +67,7 @@ const Header = ({ activeSection, sections }) => {
           <FaGithub />
         </a>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button (right on small screens) */}
         <button
           className="md:hidden text-gray-300 text-2xl p-1 hover:scale-110 transition-transform duration-300"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -109,3 +111,4 @@ const Header = ({ activeSection, sections }) => {
 };
 
 export default Header;
+
