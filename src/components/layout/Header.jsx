@@ -34,15 +34,21 @@ const Header = ({ activeSection, sections }) => {
               >
                 <span
                   className={`transition-colors duration-300 ${
-                    activeSection === section.id ? "text-[#ffa800]" : "text-gray-300"
+                    activeSection === section.id
+                      ? "text-[#ffa800]"
+                      : "text-gray-300 group-hover:text-[#ffa800]"
                   }`}
                 >
                   {section.label}
                 </span>
+                {/* underline */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#ffa800] transition-all duration-300 ${
-                    activeSection === section.id ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
+                  className={`
+            absolute left-0 -bottom-1 h-[2px] bg-[#ffa800] transition-all duration-300 
+            ${
+              activeSection === section.id ? "w-full" : "w-0 group-hover:w-full"
+            }
+          `}
                 ></span>
               </li>
             ))}
@@ -71,7 +77,9 @@ const Header = ({ activeSection, sections }) => {
       {/* Mobile Menu with animation */}
       <div
         className={`md:hidden w-full absolute top-full left-0 bg-black/90 backdrop-blur-md z-40 transform transition-all duration-500 ease-in-out ${
-          mobileMenuOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 overflow-hidden"
+          mobileMenuOpen
+            ? "opacity-100 max-h-screen"
+            : "opacity-0 max-h-0 overflow-hidden"
         }`}
       >
         <ul className="flex flex-col items-center space-y-6 py-6 font-medium text-gray-300">
@@ -101,9 +109,3 @@ const Header = ({ activeSection, sections }) => {
 };
 
 export default Header;
-
-
-
-
-
-

@@ -107,7 +107,9 @@ const App = () => {
   // 🌟 Dynamic browser tab title
   useEffect(() => {
     const section = sections.find((sec) => sec.id === activeSection);
-    document.title = section ? `${section.label} - Yassine Badri` : "Yassine Badri";
+    document.title = section
+      ? `${section.label} - Yassine Badri`
+      : "Yassine Badri";
   }, [activeSection]);
 
   // ⬆️ Scroll-to-top button
@@ -124,39 +126,65 @@ const App = () => {
       <Header activeSection={activeSection} sections={sections} />
 
       {/* 🌌 Neon Stars Background */}
-      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>
+      <canvas
+        ref={canvasRef}
+        className="absolute top-0 left-0 w-full h-full z-0"
+      ></canvas>
 
       {/* Sections */}
-      <section id="home" ref={(el) => (sectionRefs.current["home"] = el)} className="relative z-10">
+      <section
+        id="home"
+        ref={(el) => (sectionRefs.current["home"] = el)}
+        className="relative z-10"
+      >
         <Home />
       </section>
 
-      <section id="skills" ref={(el) => (sectionRefs.current["skills"] = el)} className="relative z-10 py-20 px-6">
+      <section
+        id="skills"
+        ref={(el) => (sectionRefs.current["skills"] = el)}
+        className="relative z-10 py-20 px-6"
+      >
         <SectionTitle>My Skills</SectionTitle>
         <Skills />
       </section>
 
-      <section id="about" ref={(el) => (sectionRefs.current["about"] = el)} className="relative z-10 py-20 px-6">
+      <section
+        id="about"
+        ref={(el) => (sectionRefs.current["about"] = el)}
+        className="relative z-10 py-20 px-6"
+      >
         <SectionTitle>About Me</SectionTitle>
         <About />
       </section>
 
-      <section id="projects" ref={(el) => (sectionRefs.current["projects"] = el)} className="relative z-10 py-20 px-6">
+      <section
+        id="projects"
+        ref={(el) => (sectionRefs.current["projects"] = el)}
+        className="relative z-10 py-20 px-6"
+      >
         <SectionTitle>My Projects</SectionTitle>
         <Projects />
       </section>
 
-      <section id="contact" ref={(el) => (sectionRefs.current["contact"] = el)} className="relative z-10 py-20 px-6">
+      <section
+        id="contact"
+        ref={(el) => (sectionRefs.current["contact"] = el)}
+        className="relative z-10 py-20 px-6"
+      >
         <SectionTitle>Contact Me</SectionTitle>
         <Contact />
       </section>
 
-
       {/* ⬆️ Scroll-to-top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 p-3 bg-yellow-500 text-black rounded-full shadow-lg transition-all duration-500 z-50
-          ${showScroll ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
+        className={`fixed bottom-6 right-6 p-3 bg-[#ffa800] text-black rounded-full shadow-lg transition-all duration-500 z-50
+          ${
+            showScroll
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
       >
         <FaArrowUp />
       </button>
@@ -165,8 +193,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
