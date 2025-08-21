@@ -21,6 +21,7 @@ import {
   SiBootstrap,
   SiCanva,
   SiDocker,
+  SiTypescript,
 } from "react-icons/si";
 import { FaUsers, FaComments, FaLightbulb } from "react-icons/fa";
 import { GiWorld } from "react-icons/gi"; // For languages
@@ -36,6 +37,7 @@ const skillsData = [
       { name: "Tailwind", icon: <SiTailwindcss />, color: "#06b6d4" },
       { name: "JavaScript", icon: <FaJs />, color: "#f7df1e" },
       { name: "React", icon: <FaReact />, color: "#61dafb" },
+      { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
     ],
   },
   {
