@@ -101,7 +101,7 @@ const Home = () => {
           href="#contact"
           className="px-6 py-3 rounded-md border border-[#ffa800] text-[#ffa800] font-semibold hover:bg-[#ffa800] hover:text-black transition"
         >
-          Hire Me
+          Contact Me
         </a>
       </motion.div>
 
