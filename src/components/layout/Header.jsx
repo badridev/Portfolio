@@ -59,7 +59,7 @@ const Header = ({ activeSection, sections }) => {
 
         {/* GitHub Icon (right) */}
         <a
-          href="https://github.com/BD-YASSINE"
+          href="https://github.com/badridev"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-300 hover:text-[#ffa800] text-3xl transition-colors duration-300 hidden md:inline-block"
