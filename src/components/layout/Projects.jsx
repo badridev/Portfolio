@@ -44,7 +44,7 @@ const Projects = () => {
         "InventoryPro helps businesses manage products, sales, and stock efficiently.",
       technologies: ["React", "Tailwind CSS", "PHP", "MySQL"],
       image: img1,
-      githubUrl: "https://github.com/badridev/InventoryPro",
+      githubUrl: "https://github.com/badriyassine/InventoryPro",
     },
     {
       id: 2,
@@ -55,7 +55,7 @@ const Projects = () => {
         "A modern homepage for a motorcycle store using HTML & CSS.",
       technologies: ["HTML", "CSS"],
       image: img2,
-      githubUrl: "https://github.com/badridev/Goldbike_store",
+      githubUrl: "https://github.com/badriyassine/Goldbike_store",
     },
     {
       id: 3,
@@ -66,7 +66,7 @@ const Projects = () => {
         "3D landing page built with React & Tailwind CSS with interactive elements.",
       technologies: ["React", "Tailwind CSS"],
       image: img3,
-      githubUrl: "https://github.com/badridev/Illuvium_game",
+      githubUrl: "https://github.com/badriyassine/Illuvium_game",
     },
   ];
 

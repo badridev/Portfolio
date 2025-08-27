@@ -119,7 +119,7 @@ const Home = () => {
           <FaLinkedin />
         </a>
         <a
-          href="https://github.com/badridev"
+          href="https://github.com/badriyassine"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#ffa800] transition"
