@@ -29,9 +29,9 @@ import { GiWorld } from "react-icons/gi"; // For languages
 const skillsData = [
   {
     category: "Front-End",
-    color: "#FFA800",
+    color: "#ffa800",
     skills: [
-      { name: "HTML", icon: <FaHtml5 />, color: "#FFA800" },
+      { name: "HTML", icon: <FaHtml5 />, color: "#ffa800" },
       { name: "CSS", icon: <FaCss3Alt />, color: "#264de4" },
       { name: "Bootstrap", icon: <SiBootstrap />, color: "#563d7c" },
       { name: "Tailwind", icon: <SiTailwindcss />, color: "#06b6d4" },
