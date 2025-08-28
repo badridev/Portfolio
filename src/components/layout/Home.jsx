@@ -127,7 +127,7 @@ const Home = () => {
           <FaGithub />
         </a>
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/yassinebadri_dev/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#ffa800] transition"
