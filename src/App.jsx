@@ -7,6 +7,7 @@ import Home from "./components/layout/Home";
 import About from "./components/layout/About";
 import Projects from "./components/layout/Projects";
 import Contact from "./components/layout/Contact";
+import Audio from "./components/layout/Audio";
 
 import "./App.css";
 
@@ -188,6 +189,10 @@ const App = () => {
       >
         <FaArrowUp />
       </button>
+      {/* 🎵 Audio Player - fixed right & centered vertically */}
+      <div className="fixed right-1 top-1/2 z-50 -translate-y-1/2">
+        <Audio />
+      </div>
     </div>
   );
 };
